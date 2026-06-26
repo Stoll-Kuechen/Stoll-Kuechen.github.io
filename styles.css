@@ -136,20 +136,7 @@ header {
   width: 100%;
   z-index: 50;
   background: transparent;
-  backdrop-filter: blur(0px);
-  -webkit-backdrop-filter: blur(0px);
   border-bottom: 1px solid transparent;
-  transition: border-color 0.4s var(--ease), box-shadow 0.4s var(--ease),
-    background 0.4s var(--ease), backdrop-filter 0.4s var(--ease),
-    -webkit-backdrop-filter 0.4s var(--ease);
-}
-
-header.scrolled {
-  background: rgba(var(--light-rgb), 0.88);
-  backdrop-filter: blur(14px) saturate(1.4);
-  -webkit-backdrop-filter: blur(14px) saturate(1.4);
-  border-bottom-color: rgba(138, 90, 54, 0.14);
-  box-shadow: 0 10px 30px rgba(45, 34, 25, 0.06);
 }
 
 .nav {
@@ -332,37 +319,32 @@ header.scrolled {
 .nav-links a[aria-current="page"],
 .drawer-link[aria-current="page"] { color: var(--gold); }
 
-/* =============================================================
-   DARK-TOP NAV OVERRIDES
-   Applied on pages whose first section is dark (hero video /
-   section--media). Attribute: data-top-dark on <body>.
-   Only active when the header is NOT yet scrolled (transparent).
-   ============================================================= */
-[data-top-dark] header:not(.scrolled) .nav-logo {
+/* header.over-dark: toggled by scroll handler when .hero/.section--media overlaps the nav zone */
+header.over-dark .nav-logo {
   filter: brightness(0) invert(1);
 }
 
-[data-top-dark] header:not(.scrolled) .nav-links a:not(.btn) {
+header.over-dark .nav-links a:not(.btn) {
   color: rgba(255, 255, 255, 0.88);
 }
 
-[data-top-dark] header:not(.scrolled) .nav-links a:not(.btn):hover {
+header.over-dark .nav-links a:not(.btn):hover {
   color: var(--white);
 }
 
-[data-top-dark] header:not(.scrolled) .nav-links a[aria-current="page"] {
+header.over-dark .nav-links a[aria-current="page"] {
   color: var(--gold-bright);
 }
 
-[data-top-dark] header:not(.scrolled) .nav-links a:not(.btn)::after {
+header.over-dark .nav-links a:not(.btn)::after {
   background: var(--white);
 }
 
-[data-top-dark] header:not(.scrolled) .hamburger span {
+header.over-dark .hamburger span {
   background: var(--white);
 }
 
-[data-top-dark] header:not(.scrolled) .hamburger {
+header.over-dark .hamburger {
   border-color: rgba(255, 255, 255, 0.25);
 }
 

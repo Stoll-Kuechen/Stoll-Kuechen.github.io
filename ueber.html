@@ -250,16 +250,21 @@
 </footer>
 
 <script>
-  // --- nav shadow on scroll ---
+  // --- nav: always transparent; white text over dark sections ---
   (function () {
     var header = document.getElementById('site-header');
     if (!header) return;
-    var onScroll = function () {
-      if (window.scrollY > 16) header.classList.add('scrolled');
-      else header.classList.remove('scrolled');
-    };
-    window.addEventListener('scroll', onScroll, { passive: true });
-    onScroll();
+    var NAV_H = 83;
+    var darkSections = Array.from(document.querySelectorAll('.hero, .section--media'));
+    function update() {
+      var isDark = darkSections.some(function (s) {
+        var rect = s.getBoundingClientRect();
+        return rect.top < NAV_H && rect.bottom > 0;
+      });
+      header.classList.toggle('over-dark', isDark);
+    }
+    window.addEventListener('scroll', update, { passive: true });
+    update();
   })();
 
   // --- hamburger + drawer (normal scrolling page) ---
