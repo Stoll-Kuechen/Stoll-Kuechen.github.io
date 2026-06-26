@@ -1130,7 +1130,7 @@ footer .copy {
 }
 
 /* =============================================================
-   MOBILE SECTION PAGING  (≤860px only)
+   MOBILE LAYOUT OVERRIDES  (≤860px only)
    ============================================================= */
 @media (max-width: 860px) {
   /* show hamburger, hide desktop nav CTA */
@@ -1145,16 +1145,6 @@ footer .copy {
   .mobile-overlay { display: block; pointer-events: none; }
   .drawer-open .mobile-overlay { pointer-events: auto; }
   .mobile-drawer { display: flex; }
-
-  /* hide ALL sections by default */
-  .hero,
-  section {
-    display: none;
-  }
-
-  /* show active section */
-  .hero.is-active { display: block; }
-  section.is-active { display: block; }
 
   /* mini footer: always visible on mobile — hide chrome, keep copyright */
   footer {
