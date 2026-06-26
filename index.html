@@ -100,7 +100,7 @@
     <!-- Looping background video (HERO_MEDIA=video). Autoplay needs muted +
          playsinline (MDN); the poster reuses the hero still so first paint / LCP
          and the validate.py poster check hold. Hidden for prefers-reduced-motion
-         users (styles.css), who then see the static hero plate. -->
+         users (styles.css), who then see the static poster image. -->
     
     <video class="hero-video" autoplay muted loop playsinline preload="metadata"
            poster="resources/pictures/hero.jpg" aria-hidden="true">
@@ -124,18 +124,6 @@
           <div class="stat"><strong>100%</strong><span>Individuell geplant</span></div>
         </div>
       </div>
-
-      <figure class="hero-plate hero-anim d3">
-        <div class="drawing">
-          <img src="resources/pictures/hero.jpg"
-               alt="Wohnliche STOLL-Küche mit Essbereich in warmem Abendlicht"
-               loading="eager" width="800" height="600" />
-        </div>
-        <figcaption class="plate">
-          <span>Küche · Wohnkonzept</span>
-          <span>STOLL</span>
-        </figcaption>
-      </figure>
     </div>
   </section>
 
