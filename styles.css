@@ -441,6 +441,61 @@ section {
 }
 
 /* =============================================================
+   SECTION BACKGROUND MEDIA  (full-bleed photo / muted loop video)
+   Generalises the hero pattern (.hero-video + .hero::after) so any
+   text section can sit over a background image or video while keeping
+   AA contrast via a dark scrim. Background layers carry .section-media-bg
+   (<img> and/or <video>); a poster <img> beneath the <video> is the
+   reduced-motion fallback so a dark backdrop always remains.
+   ============================================================= */
+.section--media {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.section-media-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  pointer-events: none;
+}
+
+/* slightly stronger than the hero (0.45) — these sections carry more
+   body copy; the gradient deepens the top/bottom edges */
+.section--media::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(rgba(0, 0, 0, 0.58), rgba(0, 0, 0, 0.5) 45%, rgba(0, 0, 0, 0.62));
+  pointer-events: none;
+}
+
+.section--media > .container { position: relative; z-index: 2; }
+
+/* flip text to light over the scrim (AA-safe on ≥0.5 black) */
+.section--media .section-head h1,
+.section--media .section-head h2 { color: var(--white); }
+.section--media .section-head h1 em,
+.section--media .section-head h2 em,
+.section--media .section-head > span { color: var(--gold-bright); }
+.section--media .section-head > span::before { background: var(--gold-bright); }
+.section--media .lead,
+.section--media .prose p { color: var(--light); }
+.section--media .o-divider { color: var(--gold-bright); }
+.section--media .o-watermark { color: var(--white); opacity: 0.1; }
+
+/* respect reduced-motion — drop the autoplaying loop; the poster <img>
+   layer beneath it stays visible so the backdrop (and contrast) hold */
+@media (prefers-reduced-motion: reduce) {
+  video.section-media-bg { display: none; }
+}
+
+/* =============================================================
    SERVICES
    ============================================================= */
 .services {
