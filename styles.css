@@ -135,15 +135,19 @@ header {
   top: 0;
   width: 100%;
   z-index: 50;
-  background: rgba(var(--light-rgb), 0.78);
-  backdrop-filter: blur(14px) saturate(1.4);
-  -webkit-backdrop-filter: blur(14px) saturate(1.4);
+  background: transparent;
+  backdrop-filter: blur(0px);
+  -webkit-backdrop-filter: blur(0px);
   border-bottom: 1px solid transparent;
   transition: border-color 0.4s var(--ease), box-shadow 0.4s var(--ease),
-    background 0.4s var(--ease);
+    background 0.4s var(--ease), backdrop-filter 0.4s var(--ease),
+    -webkit-backdrop-filter 0.4s var(--ease);
 }
 
 header.scrolled {
+  background: rgba(var(--light-rgb), 0.88);
+  backdrop-filter: blur(14px) saturate(1.4);
+  -webkit-backdrop-filter: blur(14px) saturate(1.4);
   border-bottom-color: rgba(138, 90, 54, 0.14);
   box-shadow: 0 10px 30px rgba(45, 34, 25, 0.06);
 }
@@ -166,7 +170,7 @@ header.scrolled {
   width: auto;
   flex: none;
   object-fit: contain;
-  mix-blend-mode: multiply;
+  transition: filter 0.4s var(--ease);
 }
 
 .nav-links {
@@ -327,6 +331,40 @@ header.scrolled {
 /* Multi-page mode (SITE_MODE=multi): mark the active page's nav link. */
 .nav-links a[aria-current="page"],
 .drawer-link[aria-current="page"] { color: var(--gold); }
+
+/* =============================================================
+   DARK-TOP NAV OVERRIDES
+   Applied on pages whose first section is dark (hero video /
+   section--media). Attribute: data-top-dark on <body>.
+   Only active when the header is NOT yet scrolled (transparent).
+   ============================================================= */
+[data-top-dark] header:not(.scrolled) .nav-logo {
+  filter: brightness(0) invert(1);
+}
+
+[data-top-dark] header:not(.scrolled) .nav-links a:not(.btn) {
+  color: rgba(255, 255, 255, 0.88);
+}
+
+[data-top-dark] header:not(.scrolled) .nav-links a:not(.btn):hover {
+  color: var(--white);
+}
+
+[data-top-dark] header:not(.scrolled) .nav-links a[aria-current="page"] {
+  color: var(--gold-bright);
+}
+
+[data-top-dark] header:not(.scrolled) .nav-links a:not(.btn)::after {
+  background: var(--white);
+}
+
+[data-top-dark] header:not(.scrolled) .hamburger span {
+  background: var(--white);
+}
+
+[data-top-dark] header:not(.scrolled) .hamburger {
+  border-color: rgba(255, 255, 255, 0.25);
+}
 
 .hero .container {
   width: min(1400px, 92%);
