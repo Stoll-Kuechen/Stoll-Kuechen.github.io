@@ -240,6 +240,16 @@ header.scrolled {
   transform: translateX(4px);
 }
 
+.btn:focus {
+  outline: none;
+}
+
+.btn:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 3px;
+  box-shadow: 0 0 0 5px rgba(32, 32, 32, 0.25);
+}
+
 .btn--gold {
   background: linear-gradient(135deg, var(--gold) 0%, var(--gold-bright) 100%);
   color: var(--ink-black);
