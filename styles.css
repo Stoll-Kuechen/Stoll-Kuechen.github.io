@@ -1278,8 +1278,12 @@ footer .copy {
 /* Wohnen one-pager: alternating media+text areas. */
 .wohnen-area { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(28px, 5vw, 64px); align-items: center; margin: clamp(40px, 7vw, 88px) 0; position: relative; }
 .wohnen-area:nth-child(even) .wohnen-media { order: 2; }
-.wohnen-media { border-radius: var(--radius-lg); overflow: hidden; background: var(--paper); box-shadow: var(--shadow); }
-.wohnen-media img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.wohnen-media { position: relative; border-radius: var(--radius-lg); overflow: hidden; background: var(--paper); box-shadow: var(--shadow); }
+.wohnen-media img,
+.wohnen-media video { display: block; width: 100%; height: 100%; object-fit: cover; }
+/* video sits over the <img> poster (reduced-motion fallback / orphan-ref). */
+.wohnen-media video { position: absolute; inset: 0; }
+@media (prefers-reduced-motion: reduce) { .wohnen-media video { display: none; } }
 .wohnen-copy h2 { font-family: var(--font-display); font-size: clamp(1.8rem, 3.4vw, 2.6rem); }
 @media (max-width: 860px) { .wohnen-area { grid-template-columns: 1fr; } .wohnen-area:nth-child(even) .wohnen-media { order: 0; } }
 
